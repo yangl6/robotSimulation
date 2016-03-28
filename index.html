@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<!-- include -->
+	<script src="./js/angular.js"></script>
+	<script src="./js/Robot.js"></script>
+	<script src="./js/Table.js"></script>
+	<script src="./js/Command.js"></script>
+	<script src="./js/CommandInvoker.js"></script>	
+	<script src="./js/InputHandler.js"></script>
+	
+	<link href="./css/bootstrap.css" rel="stylesheet" media="screen, print" type="text/css">
+	<link href="./css/myStyle.css" rel="stylesheet" media="screen, print" type="text/css">
+	
+	<!-- User defined -->
+	<script>
+	</script>
+	
+	<style>
+	</style>
+</head>
+<body>
+	<div class="container" ng-app="robotApp" ng-controller="robotCtrl">
+		<div class="row">
+			<div class="col-sm-12">
+				<h6 class="text-center" style="color: blue;">Please enter commands either from the standard input or from external file.</h6>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<p><span class="label label-success" style="width: 100%;">Option 1- Enter From Standard Input</span></p>
+				
+				<input ng-model="stdCommand" placeholder="Enter command here" id="stdInput" style="width: 100%;">
+				<p></p>
+				<button class="btn btn-primary btn-block" id="enterCommand" ng-click="enterCommand();">Enter command</button>
+				
+				<p></p>
+				<div>
+					<p><span class="label label-success" style="width: 100%;">Option 2- Enter From File</span></p>
+					<input type="file" name="fileCommand" id="fileCommand" accept="text/plain" custom-on-change="fileChange">
+					<br>
+					<p id="fileResult"></p>
+				</div>
+				
+				<div>
+					<p><span class="label label-success" style="width: 100%;">Test Data</span></p>
+					<p>For more details of test data, please see <a href="./jasmine/SpecRunner.html">Jasmine Test Page</a></p>
+					<div id="testSection">
+						<p ng-click="testData(data)" ng-repeat="data in testDataAr"><a>{{data}}</a></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 table-responsive">
+				<table id="table" class="table">
+					<tbody>
+						<tr class="" ng-repeat="x in rows track by $index">
+							<td ng-repeat="y in cols track by $index"><div class="content">{{x}}</div></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<script src="./js/controller.js"></script>
+</body>
+</html>
