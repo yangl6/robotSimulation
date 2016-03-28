@@ -1,6 +1,7 @@
-var InputHandler=function(){
+var InputHandler=function(commandList){
 	//private members
 	var commandInvoker=new CommandInvoker();
+	
 	
 	this.handleMoreCommands=function(commands,robot,table,tableEle){
 		//to remove the beginning and ending spaces
@@ -30,7 +31,7 @@ var InputHandler=function(){
 			x=parseInt(commandAr[0]);
 			y=parseInt(commandAr[1]);
 			facing=commandAr[2];
-			var isPlaced=commandInvoker.execute(new PlaceCommand(),robot,table,[x,y,facing]);
+			var isPlaced=commandInvoker.execute(commandList[0],robot,table,[x,y,facing]);
 			//to update the view
 			if(isPlaced)
 			{
@@ -44,7 +45,7 @@ var InputHandler=function(){
 		}
 		else if(command.match(/^Move$/i)!=null)
 		{
-			var isMoved=commandInvoker.execute(new MoveCommand(),robot,table,[]);
+			var isMoved=commandInvoker.execute(commandList[1],robot,table,[]);
 			//to update the view
 			if(isMoved)
 			{
@@ -57,7 +58,7 @@ var InputHandler=function(){
 		}
 		else if(command.match(/^Left$/i)!=null)
 		{
-			var isTurned=commandInvoker.execute(new LeftCommand(),robot,table,[]);
+			var isTurned=commandInvoker.execute(commandList[2],robot,table,[]);
 			if(isTurned)
 			{
 				addDegree("robotText",robot.facing);
@@ -69,7 +70,7 @@ var InputHandler=function(){
 		}
 		else if(command.match(/^Right$/i)!=null)
 		{
-			var isTurned=commandInvoker.execute(new RightCommand(),robot,table,[]);
+			var isTurned=commandInvoker.execute(commandList[3],robot,table,[]);
 			if(isTurned)
 			{
 				addDegree("robotText",robot.facing);
@@ -81,7 +82,7 @@ var InputHandler=function(){
 		}
 		else if(command.match(/^Report$/i)!=null)
 		{
-		    var reportText=commandInvoker.execute(new ReportCommand(),robot,table,[]);
+		    var reportText=commandInvoker.execute(commandList[4],robot,table,[]);
 		    if(reportText!=false)
 		    {
 		    	alert(reportText);

@@ -20,7 +20,9 @@ app.controller("robotCtrl",function($scope){
 	
 	var myRobot=new Robot(0,0);
 	var table=new Table(5);
-	var inputHandler=new InputHandler();
+	var commandList=[new PlaceCommand(),new MoveCommand(),new LeftCommand(),new RightCommand(),new ReportCommand()];
+	var inputHandler=new InputHandler(commandList);
+	
 	
 	console.log(myRobot);
 	console.log(table);
